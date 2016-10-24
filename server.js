@@ -3,28 +3,78 @@ var bodyParser = require('body-parser');
 var app = express();
 
 //Allow all requests from all domains & localhost
-app.all('/*', function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type, Accept");
-  res.header("Access-Control-Allow-Methods", "POST, GET");
-  next();
+app.all('/*', function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Methods", "POST, GET");
+    next();
 });
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
-var ingredients = [{"id":1, "text":"ham"}, {"id":2, "text":"cheese"}, {"id":3, "text":"potatos"}, {"id":4, "text":"bananas"}, {"id":5, "text":"biscuites"}];
+var userData = [{"appuser": "DEESH Na"}];
 
-app.get('/ingredients', function(req, res) {
+app.get('/userData', function (req, res) {
     console.log("GET From SERVER");
-    res.send(ingredients);
+    res.send(userData);
 });
 
-app.post('/ingredients', function(req, res) {
-    var ingredient = req.body;
-    console.log(req.body);
-    ingredients.push(ingredient);
-    res.status(200).send("Successfully posted ingredient");
+var headerData = [{"text": "USER MODE"}, {"text": "SETTINGS"}, {"text": "LOGOUT"}];
+
+app.get('/headerData', function (req, res) {
+    console.log("GET From SERVER");
+    res.send(headerData);
 });
+
+var notifications = [{"text": "25"}, {"text": "180"}, {"text": "2"}, {"text": "3"}, {"text": "DEE"}];
+
+app.get('/notifications', function (req, res) {
+    console.log("GET From SERVER");
+    res.send(notifications);
+});
+
+var warnings = [
+    {"text": "Turn off the microwave oven in 30 minutes"},
+    {"text": "3 devices in the Living Room are not working"},
+    {"text": "Mostly Sunny"}];
+
+app.get('/warnings', function (req, res) {
+    console.log("GET From SERVER");
+    res.send(warnings);
+});
+
+var modeData = [{"text": "BABY"}, {"text": "LOVE"}, {"text": "HAPPY"}];
+
+app.get('/modedata', function (req, res) {
+    console.log("GET From SERVER");
+    res.send(modeData);
+});
+
+var presetData = [{"text": "WEEKDAY"}, {"text": "WEEKEND"}];
+
+app.get('/presetdata', function (req, res) {
+    console.log("GET From SERVER");
+    res.send(presetData);
+});
+
+var roomTileInfoAll = [
+    {"text": "Temp"},
+    {"text": "Units"},
+    {"text": "Peeps"},
+    {"text": "Devices"},
+    {"text": "Other 1"},
+    {"text": "Other 2"},
+    {"text": "Other 3"},
+    {"text": "Other 4"},
+    {"text": "Other 5"},
+    {"text": "Other 6"},
+    ];
+
+app.get('/roomtileinfoall', function (req, res) {
+    console.log("GET From SERVER");
+    res.send(roomTileInfoAll);
+});
+
 
 app.listen(6060);
