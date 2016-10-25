@@ -58,7 +58,7 @@ app.get('/presetdata', function (req, res) {
     res.send(presetData);
 });
 
-var roomTileInfoAll = [
+var modalDataInfo = [
     {"text": "Temp"},
     {"text": "Units"},
     {"text": "Peeps"},
@@ -68,12 +68,33 @@ var roomTileInfoAll = [
     {"text": "Other 3"},
     {"text": "Other 4"},
     {"text": "Other 5"},
-    {"text": "Other 6"},
+    {"text": "Other 6"}
     ];
 
-app.get('/roomtileinfoall', function (req, res) {
+app.get('/modaldatainfo', function (req, res) {
     console.log("GET From SERVER");
-    res.send(roomTileInfoAll);
+    res.send(modalDataInfo);
+});
+
+var rememberedRoomInfo = [
+    {"text": "Remembered 1"},
+    {"text": "Remembered 2"},
+    {"text": "Remembered 3"},
+    {"text": "Remembered 4"}
+    ];
+
+app.get('/rememberedroominfo', function (req, res) {
+    console.log("GET From SERVER");
+    res.send(rememberedRoomInfo);
+});
+
+var roomName = [
+    {"text": "My Room"}
+    ];
+
+app.get('/roomname', function (req, res) {
+    console.log("GET From SERVER");
+    res.send(roomName);
 });
 
 
