@@ -88,9 +88,7 @@ app.get('/rememberedroominfo', function (req, res) {
     res.send(rememberedRoomInfo);
 });
 
-var roomName = [
-    {"text": "My Room"}
-    ];
+var roomName = [{"text": "My Room"}];
 
 app.get('/roomname', function (req, res) {
     console.log("GET From SERVER");
