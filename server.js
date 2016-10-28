@@ -13,21 +13,21 @@ app.all('/*', function (req, res, next) {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
-var userData = [{"appuser": "DEESH Na"}];
+var userData = [{appuser: "DEESH Na"}];
 
 app.get('/userData', function (req, res) {
     console.log("GET From SERVER");
     res.send(userData);
 });
 
-var headerData = [{"text": "USER MODE"}, {"text": "SETTINGS"}, {"text": "LOGOUT"}];
+var headerData = [{text: "USER MODE"}, {text: "SETTINGS"}, {text: "LOGOUT"}];
 
 app.get('/headerData', function (req, res) {
     console.log("GET From SERVER");
     res.send(headerData);
 });
 
-var notifications = [{"text": "25"}, {"text": "180"}, {"text": "2"}, {"text": "3"}, {"text": "DEE"}];
+var notifications = [{text: "25"}, {text: "180"}, {text: "2"}, {text: "3"}, {text: "DEE"}];
 
 app.get('/notifications', function (req, res) {
     console.log("GET From SERVER");
@@ -35,23 +35,28 @@ app.get('/notifications', function (req, res) {
 });
 
 var warnings = [
-    {"text": "Turn off the microwave oven in 30 minutes"},
-    {"text": "3 devices in the Living Room are not working"},
-    {"text": "Mostly Sunny"}];
+    {text: "Turn off the microwave oven in 30 minutes"},
+    {text: "3 devices in the Living Room are not working"},
+    {text: "Mostly Sunny"}];
 
 app.get('/warnings', function (req, res) {
     console.log("GET From SERVER");
     res.send(warnings);
 });
 
-var modeData = [{"text": "BABY"}, {"text": "LOVE"}, {"text": "HAPPY"}];
+var modes = [{mode_id: "M0001", mode_name: "happy", icon: "MI0001.png", mode_staus: 1}, {
+    mode_id: "M0002",
+    mode_name: "sade",
+    icon: "MI0002.png",
+    mode_staus: 0
+}];
 
-app.get('/modedata', function (req, res) {
+app.get('/modes', function (req, res) {
     console.log("GET From SERVER");
-    res.send(modeData);
+    res.send(modes);
 });
 
-var presetData = [{"text": "WEEKDAY"}, {"text": "WEEKEND"}];
+var presetData = [{text: "WEEKDAY"}, {text: "WEEKEND"}];
 
 app.get('/presetdata', function (req, res) {
     console.log("GET From SERVER");
@@ -59,17 +64,17 @@ app.get('/presetdata', function (req, res) {
 });
 
 var modalDataInfo = [
-    {"text": "Temp"},
-    {"text": "Units"},
-    {"text": "Peeps"},
-    {"text": "Devices"},
-    {"text": "Other 1"},
-    {"text": "Other 2"},
-    {"text": "Other 3"},
-    {"text": "Other 4"},
-    {"text": "Other 5"},
-    {"text": "Other 6"}
-    ];
+    {text: "Temp"},
+    {text: "Units"},
+    {text: "Peeps"},
+    {text: "Devices"},
+    {text: "Other 1"},
+    {text: "Other 2"},
+    {text: "Other 3"},
+    {text: "Other 4"},
+    {text: "Other 5"},
+    {text: "Other 6"}
+];
 
 app.get('/modaldatainfo', function (req, res) {
     console.log("GET From SERVER");
@@ -77,22 +82,90 @@ app.get('/modaldatainfo', function (req, res) {
 });
 
 var rememberedRoomInfo = [
-    {"text": "Remembered 1"},
-    {"text": "Remembered 2"},
-    {"text": "Remembered 3"},
-    {"text": "Remembered 4"}
-    ];
+    {text: "Remembered 1"},
+    {text: "Remembered 2"},
+    {text: "Remembered 3"},
+    {text: "Remembered 4"}
+];
 
 app.get('/rememberedroominfo', function (req, res) {
     console.log("GET From SERVER");
     res.send(rememberedRoomInfo);
 });
 
-var roomName = [{"text": "My Room"}];
+var roomName = [{text: "1st Room"}, {text: "2nd Room"}];
 
 app.get('/roomname', function (req, res) {
     console.log("GET From SERVER");
     res.send(roomName);
+});
+
+var areas = [{
+    _id: "AR0001",
+    area_name: "Room01",
+    area_type: "Room",
+    img: [{area_img_id: "AR0001-AI0001", area_img: "Room01-01.jpeg"}, {
+        area_img_id: "AR0001-AI0002",
+        area_img: "Room01-02.jpeg"
+    }, {area_img_id: "AR0001-AI0003", area_img: "Room01-03.jpeg"}],
+    orientation: "Left",
+    sequence: "01",
+    user_area: [{user_id: "U0001", personal_room: 1, personal_name: "MyRoom"}, {
+        user_id: "U0002",
+        personal_room: 0,
+        personal_name: "Brothers'sRoom"
+    }],
+    selected_area_img_id: "AR0001-AI0001"
+}, {
+    _id: "AR0002",
+    area_name: "Room02",
+    area_type: "Room",
+    img: [{area_img_id: "AR0002-AI0001", area_img: "Room02-01.jpeg"}, {
+        area_img_id: "AR0002-AI0002",
+        area_img: "Room02-02.jpeg"
+    }, {area_img_id: "AR0002-AI0003", area_img: "Room02-03.jpeg"}],
+    orientation: "Left",
+    sequence: "01",
+    user_area: [{user_id: "U0001", personal_room: 0, personal_name: "BigBrother'sRoom"}, {
+        user_id: "U0002",
+        personal_room: 1,
+        personal_name: "MyRoom"
+    }],
+    selected_area_img_id: "AR0001-AI0001"
+}];
+
+app.get('/areas', function (req, res) {
+    console.log("GET From SERVER");
+    res.send(areas);
+});
+
+var modes = [{mode_id: "M0001", mode_name: "happy", icon: "MI0001.png", mode_staus: 1}, {
+    mode_id: "M0002",
+    mode_name: "sade",
+    icon: "MI0002.png",
+    mode_staus: 0
+}];
+
+app.get('/modes', function (req, res) {
+    console.log("GET From SERVER");
+    res.send(modes);
+});
+
+var summarystats = [{_id: "SS0001", role_action_id: "RA0001", stat_id: "ST0001.png", selected: 1}, {
+    _id: "SS0002",
+    role_action_id: "RA0001",
+    stat_id: "ST0001.png",
+    selected: 1
+}, {_id: "SS0003", role_action_id: "RA0001", stat_id: "ST0001.png", selected: 1}, {
+    _id: "SS0004",
+    role_action_id: "RA0001",
+    stat_id: "ST0001.png",
+    selected: 1
+}, {_id: "SS0005", role_action_id: "RA0001", stat_id: "ST0001.png", selected: 0}];
+
+app.get('/summarystats', function (req, res) {
+    console.log("GET From SERVER");
+    res.send(summarystats);
 });
 
 
