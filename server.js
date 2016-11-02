@@ -27,7 +27,7 @@ app.get('/headerData', function (req, res) {
     res.send(headerData);
 });
 
-var notifications = [{text: "25"}, {text: "180"}, {text: "2"}, {text: "3"}, {text: "DEE"}];
+var notifications = [{text: "25"}, {text: "180"}, {text: "2"}, {text: "3"}];
 
 app.get('/notifications', function (req, res) {
     console.log("GET From SERVER");
@@ -44,19 +44,7 @@ app.get('/warnings', function (req, res) {
     res.send(warnings);
 });
 
-var modes = [{mode_id: "M0001", mode_name: "happy", icon: "MI0001.png", mode_staus: 1}, {
-    mode_id: "M0002",
-    mode_name: "sade",
-    icon: "MI0002.png",
-    mode_staus: 0
-}];
-
-app.get('/modes', function (req, res) {
-    console.log("GET From SERVER");
-    res.send(modes);
-});
-
-var presetData = [{text: "WEEKDAY"}, {text: "WEEKEND"}];
+var presetData = [{preset_name: "WEEKDAY"}, {preset_name: "WEEKEND"}];
 
 app.get('/presetdata', function (req, res) {
     console.log("GET From SERVER");
@@ -91,13 +79,6 @@ var rememberedRoomInfo = [
 app.get('/rememberedroominfo', function (req, res) {
     console.log("GET From SERVER");
     res.send(rememberedRoomInfo);
-});
-
-var roomName = [{text: "1st Room"}, {text: "2nd Room"}];
-
-app.get('/roomname', function (req, res) {
-    console.log("GET From SERVER");
-    res.send(roomName);
 });
 
 var areas = [{
@@ -139,34 +120,76 @@ app.get('/areas', function (req, res) {
     res.send(areas);
 });
 
-var modes = [{mode_id: "M0001", mode_name: "happy", icon: "MI0001.png", mode_staus: 1}, {
-    mode_id: "M0002",
-    mode_name: "sade",
-    icon: "MI0002.png",
-    mode_staus: 0
-}];
+var modes = [
+    {mode_id: "M0001", mode_name: "happy", icon: "MI0001.png", mode_staus: 1},
+    {mode_id: "M0002", mode_name: "sad", icon: "MI0002.png", mode_staus: 0}];
 
 app.get('/modes', function (req, res) {
     console.log("GET From SERVER");
     res.send(modes);
 });
 
-var summarystats = [{_id: "SS0001", role_action_id: "RA0001", stat_id: "ST0001.png", selected: 1}, {
-    _id: "SS0002",
-    role_action_id: "RA0001",
-    stat_id: "ST0001.png",
-    selected: 1
-}, {_id: "SS0003", role_action_id: "RA0001", stat_id: "ST0001.png", selected: 1}, {
-    _id: "SS0004",
-    role_action_id: "RA0001",
-    stat_id: "ST0001.png",
-    selected: 1
-}, {_id: "SS0005", role_action_id: "RA0001", stat_id: "ST0001.png", selected: 0}];
+var summarystats = [
+    {_id: "SS0001", role_action_id: "RA0001", stat_id: "ST0001.png", selected: 1},
+    {_id: "SS0002", role_action_id: "RA0001", stat_id: "ST0001.png", selected: 1},
+    {_id: "SS0003", role_action_id: "RA0001", stat_id: "ST0001.png", selected: 1},
+    {_id: "SS0004", role_action_id: "RA0001", stat_id: "ST0001.png", selected: 1},
+    {_id: "SS0005", role_action_id: "RA0001", stat_id: "ST0001.png", selected: 0}];
 
 app.get('/summarystats', function (req, res) {
     console.log("GET From SERVER");
     res.send(summarystats);
 });
 
+
+var notificationModalListItems = [
+    {text: "Notification all 1"},
+    {text: "Notification all 2"},
+    {text: "Notification all 3"},
+    {text: "Notification all 4"},
+    {text: "Notification all 5"},
+    {text: "Notification all 6"}
+];
+
+app.get('/notificationModalListItems', function (req, res) {
+    console.log("GET From SERVER");
+    res.send(notificationModalListItems);
+});
+
+var warningModalListItems = [
+    {text: "Warning all 1"},
+    {text: "Warning all 2"},
+    {text: "Warning all 3"},
+    {text: "Warning all 4"},
+    {text: "Warning all 5"},
+    {text: "Warning all 6"}
+];
+
+app.get('/warningModalListItems', function (req, res) {
+    console.log("GET From SERVER");
+    res.send(warningModalListItems);
+});
+
+var allPresets = [
+    {preset_id: "P0001", preset_name: "Morning"},
+    {preset_id: "P0002", preset_name: "Afternoon"},
+    {preset_id: "P0003", preset_name: "Evening"},
+    {preset_id: "P0004", preset_name: "Night"}];
+
+app.get('/users/1/preset', function (req, res) {
+    console.log("GET From SERVER");
+    res.send(allPresets);
+});
+
+var allModes = [
+    {mode_id: "M0001", mode_name: "Mode Morning"},
+    {mode_id: "M0002", mode_name: "Mode Afternoon"},
+    {mode_id: "M0003", mode_name: "Mode Evening"},
+    {mode_id: "M0004", mode_name: "Mode Night"}];
+
+app.get('/users/1/mode', function (req, res) {
+    console.log("GET From SERVER");
+    res.send(allModes);
+});
 
 app.listen(6060);
