@@ -72,7 +72,7 @@ var allAreasForUser = [
         img: [
             {
                 area_img_id: "AR0001-AI0001",
-                area_img: "Room01-01.jpeg"
+                area_img: "dummy-room-2.jpg"
             },
             {
                 area_img_id: "AR0001-AI0002",
@@ -83,8 +83,45 @@ var allAreasForUser = [
                 area_img: "Room01-03.jpeg"
             }
         ]
-    }
-];
+    }, {
+        _id: "AR0002",
+        area_name: "Room 02",
+        area_type: "Room",
+        orientation: "Left",
+        sequence: "02",
+        selected_area_img_id: "AR0001-AI0001",
+        floor: [{
+            floor_id: "FL0001",
+            floor_name: "1st floor",
+            floor_no: "01"
+        }],
+        user_area: [
+            {
+                user_id: "U0001",
+                personal_room: 1,
+                personal_name: "My Room"
+            },
+            {
+                user_id: "U0002",
+                personal_room: 0,
+                personal_name: "Brothers's Room"
+            }
+        ],
+        img: [
+            {
+                area_img_id: "AR0001-AI0001",
+                area_img: "dummy-room-3.jpg"
+            },
+            {
+                area_img_id: "AR0001-AI0002",
+                area_img: "Room01-02.jpeg"
+            },
+            {
+                area_img_id: "AR0001-AI0003",
+                area_img: "Room01-03.jpeg"
+            }
+        ]
+    }];
 
 app.get('/users/U0001/areas', function (req, res) {
     console.log("GET From SERVER");
@@ -261,7 +298,7 @@ app.get('/summarystats/SS0001', function (req, res) {
     console.log("GET From SERVER");
     res.send(allSummaryStats);
 });
-//
+
 // //2.4
 // var summaryStatsforUserAndArea = [{
 //     _id: "AR0001",
@@ -299,18 +336,36 @@ app.get('/summarystats/SS0001', function (req, res) {
 //         role_action_id: "RA0001",
 //         stat_id: "ST0001",
 //         area_id: "[AR0001,AR0002]",
-//         stat_name: "Temprajjhghgjgture",
-//         icon: "Temprature.png",
+//         stat_name: "Temperature",
+//         icon: "thermometer.png",
 //         value: "25",
 //         selected: "1"
 //     }, {
 //         _id: "SS0002",
-//         role_action_id: "RA0002",
+//         role_action_id: "RA0001",
 //         stat_id: "ST0002",
-//         area_id: "[AR0002,AR0002]",
-//         stat_name: "Temprature",
-//         icon: "Temprature.png",
-//         value: "25",
+//         area_id: "[AR0001,AR0002]",
+//         stat_name: "Occupancy",
+//         icon: "command.png",
+//         value: "2",
+//         selected: "1"
+//     }, {
+//         _id: "SS0003",
+//         role_action_id: "RA0001",
+//         stat_id: "ST0003",
+//         area_id: "[AR0001,AR0002]",
+//         stat_name: "Power Consumption",
+//         icon: "flash.png",
+//         value: "2",
+//         selected: "0"
+//     }, {
+//         _id: "SS0004",
+//         role_action_id: "RA0001",
+//         stat_id: "ST0004",
+//         area_id: "[AR0001,AR0002]",
+//         stat_name: "What ever",
+//         icon: "flash.png",
+//         value: "2",
 //         selected: "1"
 //     }]
 // }];
@@ -320,54 +375,272 @@ app.get('/summarystats/SS0001', function (req, res) {
 //     res.send(summaryStatsforUserAndArea);
 // });
 
-//2.5
-var summaryStatsForOneUserAllAreas = [{
-    _id: "AR0001",
-    area_name: "Room 01",
-    area_type: "Room",
-    orientation: "Left",
-    sequence: "01",
-    selected_area_img_id: "AR0001-AI0001",
-    floor: [{
-        floor_id: "FL0001",
-        floor_name: "1st floor",
-        floor_no: "01"
-    }],
-    user_area: [{
-        user_id: "U0001",
-        personal_room: 1,
-        personal_name: "My Room"
-    }, {
-        user_id: "U0002",
-        personal_room: 0,
-        personal_name: "Brothers's Room"
-    }],
-    img: [{
-        area_img_id: "AR0001-AI0001",
-        area_img: "Room01-01.jpeg"
-    }, {
-        area_img_id: "AR0001-AI0002",
-        area_img: "Room01-02.jpeg"
-    }, {
-        area_img_id: "AR0001-AI0003",
-        area_img: "Room01-03.jpeg"
-    }],
-    summerystat: [{
-        _id: "SS0001",
-        role_action_id: "RA0001",
-        stat_id: "ST0001",
-        area_id: "[AR0001,AR0002]",
-        stat_name: "Temperature",
-        icon: "thermometer.png",
-        value: "25",
-        selected: "1"
-    }]
+//Summary Stats for areas
+var modifiedSummaryStatsArea1 = [{
+    _id: "SS0001",
+    role_action_id: "RA0001",
+    stat_id: "ST0001",
+    area_id: "[AR0001,AR0002]",
+    stat_name: "Temperature",
+    icon: "thermometer.png",
+    value: "Area 1 - 25°C",
+    selected: "1"
+}, {
+    _id: "SS0002",
+    role_action_id: "RA0001",
+    stat_id: "ST0002",
+    area_id: "[AR0001,AR0002]",
+    stat_name: "Occupancy",
+    icon: "command.png",
+    value: "Area 1 - 2",
+    selected: "1"
+}, {
+    _id: "SS0003",
+    role_action_id: "RA0001",
+    stat_id: "ST0003",
+    area_id: "[AR0001,AR0002]",
+    stat_name: "Power Consumption",
+    icon: "flash.png",
+    value: "Area 1 - 270",
+    selected: "0"
+}, {
+    _id: "SS0004",
+    role_action_id: "RA0001",
+    stat_id: "ST0004",
+    area_id: "[AR0001,AR0002]",
+    stat_name: "What ever",
+    icon: "alarm.png",
+    value: "Area 1 - 123",
+    selected: "1"
+}, {
+    _id: "SS0004",
+    role_action_id: "RA0001",
+    stat_id: "ST0004",
+    area_id: "[AR0001,AR0002]",
+    stat_name: "What ever",
+    icon: "idea.png",
+    value: "Area 1 - 12211",
+    selected: "1"
+}, {
+    _id: "SS0004",
+    role_action_id: "RA0001",
+    stat_id: "ST0004",
+    area_id: "[AR0001,AR0002]",
+    stat_name: "What ever",
+    icon: "settings.png",
+    value: "Area 1 - 1211",
+    selected: "0"
 }];
 
-app.get('/users/U0001/areas/summarystats/data', function (req, res) {
+app.get('/users/U0001/areas/AR0001/summarystats/data', function (req, res) {
     console.log("GET From SERVER");
-    res.send(summaryStatsForOneUserAllAreas);
+    res.send(modifiedSummaryStatsArea1);
 });
+
+var modifiedSummaryStatsArea2 = [{
+    _id: "SS0001",
+    role_action_id: "RA0001",
+    stat_id: "ST0001",
+    area_id: "[AR0001,AR0002]",
+    stat_name: "Temperature",
+    icon: "thermometer.png",
+    value: "Area 2 - 30°C",
+    selected: "1"
+}, {
+    _id: "SS0002",
+    role_action_id: "RA0001",
+    stat_id: "ST0002",
+    area_id: "[AR0001,AR0002]",
+    stat_name: "Occupancy",
+    icon: "command.png",
+    value: "Area 2 - 4",
+    selected: "1"
+}, {
+    _id: "SS0003",
+    role_action_id: "RA0001",
+    stat_id: "ST0003",
+    area_id: "[AR0001,AR0002]",
+    stat_name: "Power Consumption",
+    icon: "flash.png",
+    value: "Area 2 - 140",
+    selected: "0"
+}, {
+    _id: "SS0004",
+    role_action_id: "RA0001",
+    stat_id: "ST0004",
+    area_id: "[AR0001,AR0002]",
+    stat_name: "What ever",
+    icon: "alarm.png",
+    value: "Area 2 - 13",
+    selected: "1"
+}, {
+    _id: "SS0004",
+    role_action_id: "RA0001",
+    stat_id: "ST0004",
+    area_id: "[AR0001,AR0002]",
+    stat_name: "What ever",
+    icon: "idea.png",
+    value: "Area 2 - 22",
+    selected: "1"
+}, {
+    _id: "SS0004",
+    role_action_id: "RA0001",
+    stat_id: "ST0004",
+    area_id: "[AR0001,AR0002]",
+    stat_name: "What ever",
+    icon: "settings.png",
+    value: "Area 2 - 33",
+    selected: "0"
+}];
+
+app.get('/users/U0001/areas/AR0002/summarystats/data', function (req, res) {
+    console.log("GET From SERVER");
+    res.send(modifiedSummaryStatsArea2);
+});
+
+// 2.5
+// var summaryStatsForOneUserAllAreasss = [{
+//     _id: "AR0001",
+//     area_name: "Room 01",
+//     area_type: "Room",
+//     orientation: "Left",
+//     sequence: "01",
+//     selected_area_img_id: "AR0001-AI0001",
+//     floor: [{
+//         floor_id: "FL0001",
+//         floor_name: "1st floor",
+//         floor_no: "01"
+//     }],
+//     user_area: [{
+//         user_id: "U0001",
+//         personal_room: 1,
+//         personal_name: "My Room"
+//     }, {
+//         user_id: "U0002",
+//         personal_room: 0,
+//         personal_name: "Brothers's Room"
+//     }],
+//     img: [{
+//         area_img_id: "AR0001-AI0001",
+//         area_img: "Room01-01.jpeg"
+//     }, {
+//         area_img_id: "AR0001-AI0002",
+//         area_img: "Room01-02.jpeg"
+//     }, {
+//         area_img_id: "AR0001-AI0003",
+//         area_img: "Room01-03.jpeg"
+//     }],
+//     summerystat: [{
+//         _id: "SS0001",
+//         role_action_id: "RA0001",
+//         stat_id: "ST0001",
+//         area_id: "[AR0001,AR0002]",
+//         stat_name: "Temperature",
+//         icon: "thermometer.png",
+//         value: "25°C",
+//         selected: "1"
+//     }, {
+//         _id: "SS0002",
+//         role_action_id: "RA0001",
+//         stat_id: "ST0002",
+//         area_id: "[AR0001,AR0002]",
+//         stat_name: "Occupancy",
+//         icon: "command.png",
+//         value: "2",
+//         selected: "1"
+//     }, {
+//         _id: "SS0003",
+//         role_action_id: "RA0001",
+//         stat_id: "ST0003",
+//         area_id: "[AR0001,AR0002]",
+//         stat_name: "Power Consumption",
+//         icon: "flash.png",
+//         value: "2",
+//         selected: "0"
+//     }, {
+//         _id: "SS0002",
+//         role_action_id: "RA0001",
+//         stat_id: "ST0002",
+//         area_id: "[AR0001,AR0002]",
+//         stat_name: "What ever",
+//         icon: "flash.png",
+//         value: "2",
+//         selected: "1"
+//     }]
+// }, {
+//     _id: "AR0002",
+//     area_name: "Room 02",
+//     area_type: "Room",
+//     orientation: "Left",
+//     sequence: "01",
+//     selected_area_img_id: "AR0001-AI0001",
+//     floor: [{
+//         floor_id: "FL0001",
+//         floor_name: "1st floor",
+//         floor_no: "01"
+//     }],
+//     user_area: [{
+//         user_id: "U0001",
+//         personal_room: 1,
+//         personal_name: "My Room"
+//     }, {
+//         user_id: "U0002",
+//         personal_room: 0,
+//         personal_name: "Brothers's Room"
+//     }],
+//     img: [{
+//         area_img_id: "AR0001-AI0001",
+//         area_img: "Room01-01.jpeg"
+//     }, {
+//         area_img_id: "AR0001-AI0002",
+//         area_img: "Room01-02.jpeg"
+//     }, {
+//         area_img_id: "AR0001-AI0003",
+//         area_img: "Room01-03.jpeg"
+//     }],
+//     summerystat: [{
+//         _id: "SS0001",
+//         role_action_id: "RA0001",
+//         stat_id: "ST0001",
+//         area_id: "[AR0001,AR0002]",
+//         stat_name: "Temperature",
+//         icon: "thermometer.png",
+//         value: "25°C",
+//         selected: "1"
+//     }, {
+//         _id: "SS0002",
+//         role_action_id: "RA0001",
+//         stat_id: "ST0002",
+//         area_id: "[AR0001,AR0002]",
+//         stat_name: "Occupancy",
+//         icon: "command.png",
+//         value: "2",
+//         selected: "1"
+//     }, {
+//         _id: "SS0003",
+//         role_action_id: "RA0001",
+//         stat_id: "ST0003",
+//         area_id: "[AR0001,AR0002]",
+//         stat_name: "Power Consumption",
+//         icon: "flash.png",
+//         value: "2",
+//         selected: "0"
+//     }, {
+//         _id: "SS0002",
+//         role_action_id: "RA0001",
+//         stat_id: "ST0002",
+//         area_id: "[AR0001,AR0002]",
+//         stat_name: "What ever",
+//         icon: "flash.png",
+//         value: "2",
+//         selected: "1"
+//     }]
+// }];
+//
+// app.get('/users/U0001/areas/AR0001/summarystats/data/blah', function (req, res) {
+//     console.log("GET From SERVER");
+//     res.send(summaryStatsForOneUserAllAreasss);
+// });
 
 var allModesForUserAndArea = [{
     mode_id: "M0001",
@@ -475,76 +748,100 @@ app.get('/areas/AR0001/modes', function (req, res) {
 
 //3.5
 var modesForUser = [{
-    mode_id: "M0001",
-    mode_name: "Romance",
+    _id: "M0001",
+    mode_name: "Love Mode",
     icon: "love.png",
     mode_staus: "1",
-    mode_permission: [{
-        mode_permission_id: "MP0001",
-        mode_id: "M0001",
-        role_action_id: "RA0001",
-        operation_id: "OP0001",
-        favorite: "1"
+    role_action_id: "RA0001",
+    area_id: "AR0001",
+    favorite: "1",
+    operation: ["Add",
+        "Update",
+        "Delete",
+        "View"
+    ],
+    node_info: [{
+        node_id: "N0001",
+        action_event_id: ["AE0001",
+            "AE0002"
+        ]
     }, {
-        mode_permission_id: "MP0002",
-        mode_id: "M0001",
-        role_action_id: "RA0002",
-        operation_id: "OP0002",
-        favorite: "1"
+        node_id: "N0002",
+        action_event_id: ["AE0001",
+            "AE0002"
+        ]
     }]
 }, {
-    mode_id: "M0001",
-    mode_name: "Party",
+    _id: "M0001",
+    mode_name: "Party Mode",
     icon: "party.png",
-    mode_staus: "0",
-    mode_permission: [{
-        mode_permission_id: "MP0001",
-        mode_id: "M0001",
-        role_action_id: "RA0001",
-        operation_id: "OP0001",
-        favorite: "1"
+    mode_staus: "1",
+    role_action_id: "RA0001",
+    area_id: "AR0001",
+    favorite: "0",
+    operation: ["Add",
+        "Update",
+        "Delete",
+        "View"
+    ],
+    node_info: [{
+        node_id: "N0001",
+        action_event_id: ["AE0001",
+            "AE0002"
+        ]
     }, {
-        mode_permission_id: "MP0002",
-        mode_id: "M0001",
-        role_action_id: "RA0002",
-        operation_id: "OP0002",
-        favorite: "1"
+        node_id: "N0002",
+        action_event_id: ["AE0001",
+            "AE0002"
+        ]
     }]
 }, {
-    mode_id: "M0001",
-    mode_name: "Sad",
+    _id: "M0003",
+    mode_name: "Sad Mode",
     icon: "sad.png",
     mode_staus: "1",
-    mode_permission: [{
-        mode_permission_id: "MP0001",
-        mode_id: "M0001",
-        role_action_id: "RA0001",
-        operation_id: "OP0001",
-        favorite: "1"
+    role_action_id: "RA0001",
+    area_id: "AR0001",
+    favorite: "1",
+    operation: ["Add",
+        "Update",
+        "Delete",
+        "View"
+    ],
+    node_info: [{
+        node_id: "N0001",
+        action_event_id: ["AE0001",
+            "AE0002"
+        ]
     }, {
-        mode_permission_id: "MP0002",
-        mode_id: "M0001",
-        role_action_id: "RA0002",
-        operation_id: "OP0002",
-        favorite: "1"
+        node_id: "N0002",
+        action_event_id: ["AE0001",
+            "AE0002"
+        ]
     }]
 }, {
-    mode_id: "M0001",
-    mode_name: "Hungry",
+    _id: "M0004",
+    mode_name: "Hungry Mode",
     icon: "hungry.png",
-    mode_staus: "0",
-    mode_permission: [{
-        mode_permission_id: "MP0001",
-        mode_id: "M0001",
-        role_action_id: "RA0001",
-        operation_id: "OP0001",
-        favorite: "1"
+    mode_staus: "1",
+    role_action_id: "RA0004",
+    area_id: "AR0004",
+    favorite: "1",
+    operation: ["Add",
+        "Update",
+        "Delete",
+        "View"
+    ],
+    node_info: [{
+        node_id: "N0001",
+        action_event_id: ["AE0001",
+            "AE0002"
+        ]
     }, {
-        mode_permission_id: "MP0002",
-        mode_id: "M0001",
-        role_action_id: "RA0002",
-        operation_id: "OP0002",
-        favorite: "1"
+        node_id: "N0002",
+        action_event_id: ["AE0001",
+            "AE0002"
+        ]
     }]
 }];
 
@@ -555,77 +852,57 @@ app.get('/users/U0001/modes', function (req, res) {
 
 //4.1
 var presetsForUsers = [{
-    preset_id: "P0001",
-    preset_name: "Shopping",
+    _id: "P0001",
     icon: "shopping.png",
-    preset_staus: "1",
-    preset_permission: [{
-        preset_permission_id: "PP0001",
-        preset_id: "P0001",
-        role_action_id: "RA0001",
-        operation_id: "OP0001",
-        favorite: "0"
-    }, {
-        preset_permission_id: "PP0002",
-        preset_id: "P0001",
-        role_action_id: "RA0002",
-        operation_id: "OP0002",
-        favorite: "1"
-    }]
+    preset_name: "Shopping",
+    preset_status: "1",
+    role_action_id: "RA0001",
+    favorite: "1",
+    operation: ["Add",
+        "Update",
+        "Delete",
+        "View"
+    ],
+    mode_id: ["M0001"]
 }, {
-    preset_id: "P0001",
-    preset_name: "Poya",
-    icon: "poya.png",
-    preset_staus: "0",
-    preset_permission: [{
-        preset_permission_id: "PP0001",
-        preset_id: "P0001",
-        role_action_id: "RA0001",
-        operation_id: "OP0001",
-        favorite: "0"
-    }, {
-        preset_permission_id: "PP0002",
-        preset_id: "P0001",
-        role_action_id: "RA0002",
-        operation_id: "OP0002",
-        favorite: "1"
-    }]
-}, {
-    preset_id: "P0001",
-    preset_name: "Guys",
-    icon: "guys_only.png",
-    preset_staus: "0",
-    preset_permission: [{
-        preset_permission_id: "PP0001",
-        preset_id: "P0001",
-        role_action_id: "RA0001",
-        operation_id: "OP0001",
-        favorite: "0"
-    }, {
-        preset_permission_id: "PP0002",
-        preset_id: "P0001",
-        role_action_id: "RA0002",
-        operation_id: "OP0002",
-        favorite: "1"
-    }]
-}, {
-    preset_id: "P0001",
-    preset_name: "Sunday",
+    _id: "P0002",
     icon: "sunday.png",
-    preset_staus: "1",
-    preset_permission: [{
-        preset_permission_id: "PP0001",
-        preset_id: "P0001",
-        role_action_id: "RA0001",
-        operation_id: "OP0001",
-        favorite: "0"
-    }, {
-        preset_permission_id: "PP0002",
-        preset_id: "P0001",
-        role_action_id: "RA0002",
-        operation_id: "OP0002",
-        favorite: "1"
-    }]
+    preset_name: "Sunday",
+    preset_status: "1",
+    role_action_id: "RA0001",
+    favorite: "0",
+    operation: ["Add",
+        "Update",
+        "Delete",
+        "View"
+    ],
+    mode_id: ["M0001"]
+}, {
+    _id: "P0003",
+    icon: "guys_only.png",
+    preset_name: "Drinking Night",
+    preset_status: "1",
+    role_action_id: "RA0001",
+    favorite: "1",
+    operation: ["Add",
+        "Update",
+        "Delete",
+        "View"
+    ],
+    mode_id: ["M0001"]
+}, {
+    _id: "P0004",
+    icon: "poya.png",
+    preset_name: "Poya Day",
+    preset_status: "1",
+    role_action_id: "RA0001",
+    favorite: "1",
+    operation: ["Add",
+        "Update",
+        "Delete",
+        "View"
+    ],
+    mode_id: ["M0001"]
 }];
 
 app.get('/users/U0001/preset', function (req, res) {
@@ -821,29 +1098,29 @@ app.get('/users/notification', function (req, res) {
 var summaryStatsSidepanelAll = [{
         _id: "SS0001",
         role_action_id: "RA0001",
-        stat_id: "baby.png",
+        stat_id: "1",
         area_id: "[AR0001,AR0002]",
         stat: [{
             stat_name: "Temperature",
             icon: "thermometer.png"
         }],
-        value: "25",
+        value: "25°C",
         selected: "1"
     }, {
         _id: "SS0001",
         role_action_id: "RA0002",
-        stat_id: "flash.png",
+        stat_id: "2",
         area_id: "[AR0001,AR0002]",
         stat: [{
             stat_name: "Power Consumption",
             icon: "flash.png"
         }],
         value: "179 Unit",
-        selected: "0"
+        selected: "1"
     }, {
         summarystat_id: "SS0004",
         role_action_id: "RA0003",
-        stat_id: "thermometer.png",
+        stat_id: "3",
         area_id: "[AR0001,AR0002]",
         stat: [{
             stat_name: "Occupancy",
@@ -852,22 +1129,56 @@ var summaryStatsSidepanelAll = [{
         value: "5 people",
         selected: "1"
     }, {
-        summarystat_id: "SS0003",
+        summarystat_id: "SS0004",
         role_action_id: "RA0004",
-        stat_id: "cloud.png",
+        stat_id: "4",
         area_id: "[AR0001,AR0002]",
         stat: [{
-            stat_name: "What ever",
-            icon: "alarm.png"
+            stat_name: "Devices",
+            icon: "idea.png"
         }],
-        value: "5 people",
+        value: "6 devices",
         selected: "1"
+    }, {
+        summarystat_id: "SS0005",
+        role_action_id: "RA0004",
+        stat_id: "5",
+        area_id: "[AR0001,AR0002]",
+        stat: [{
+            stat_name: "Just",
+            icon: "settings.png"
+        }],
+        value: "Temp",
+        selected: "0"
+    }, {
+        summarystat_id: "SS0006",
+        role_action_id: "RA0004",
+        stat_id: "6",
+        area_id: "[AR0001,AR0002]",
+        stat: [{
+            stat_name: "Weather",
+            icon: "cloud.png"
+        }],
+        value: "Weather",
+        selected: "0"
     }]
     ;
 
 app.get('/users/U0001/summarystats/overview', function (req, res) {
     console.log("GET From SERVER");
     res.send(summaryStatsSidepanelAll);
+});
+
+//POST Testing
+var test = [{name: "Dee"}, {age: "23"}];
+
+app.get('/test', function (req, res) {
+    console.log("GET From SERVER");
+    res.send(test);
+});
+app.post('/test', function (req, res) {
+    console.log("POST To SERVER");
+    res.send(test, {body: req.body});
 });
 
 app.listen(6060);
