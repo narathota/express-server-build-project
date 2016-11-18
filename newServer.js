@@ -383,7 +383,7 @@ var modifiedSummaryStatsArea1 = [{
     area_id: "[AR0001,AR0002]",
     stat_name: "Temperature",
     icon: "thermometer.png",
-    value: "Area 1 - 25°C",
+    value: "Area 1 - 255°C",
     selected: "1"
 }, {
     _id: "SS0002",
@@ -408,7 +408,7 @@ var modifiedSummaryStatsArea1 = [{
     role_action_id: "RA0001",
     stat_id: "ST0004",
     area_id: "[AR0001,AR0002]",
-    stat_name: "What ever",
+    stat_name: "What ever-1",
     icon: "alarm.png",
     value: "Area 1 - 123",
     selected: "1"
@@ -417,7 +417,7 @@ var modifiedSummaryStatsArea1 = [{
     role_action_id: "RA0001",
     stat_id: "ST0004",
     area_id: "[AR0001,AR0002]",
-    stat_name: "What ever",
+    stat_name: "What ever-2",
     icon: "idea.png",
     value: "Area 1 - 12211",
     selected: "1"
@@ -426,7 +426,7 @@ var modifiedSummaryStatsArea1 = [{
     role_action_id: "RA0001",
     stat_id: "ST0004",
     area_id: "[AR0001,AR0002]",
-    stat_name: "What ever",
+    stat_name: "What ever-3",
     icon: "settings.png",
     value: "Area 1 - 1211",
     selected: "0"
@@ -437,30 +437,32 @@ app.get('/users/U0001/areas/AR0001/summarystats/data', function (req, res) {
     res.send(modifiedSummaryStatsArea1);
 });
 
-var modifiedSummaryStatsArea2 = [{
-    _id: "SS0001",
-    role_action_id: "RA0001",
-    stat_id: "ST0001",
-    area_id: "[AR0001,AR0002]",
-    stat_name: "Temperature",
-    icon: "thermometer.png",
-    value: "Area 2 - 30°C",
-    selected: "1"
-}, {
-    _id: "SS0002",
-    role_action_id: "RA0001",
-    stat_id: "ST0002",
-    area_id: "[AR0001,AR0002]",
-    stat_name: "Occupancy",
-    icon: "command.png",
-    value: "Area 2 - 4",
-    selected: "1"
-}, {
+var modifiedSummaryStatsArea2 = [
+//     {
+//     _id: "SS0001",
+//     role_action_id: "RA0001",
+//     stat_id: "ST0001",
+//     area_id: "[AR0001,AR0002]",
+//     stat_name: "Area 2 - Temperature",
+//     icon: "null.png",
+//     value: " ",
+//     selected: "1"
+// }, {
+//     _id: "SS0002",
+//     role_action_id: "RA0001",
+//     stat_id: "ST0002",
+//     area_id: "[AR0001,AR0002]",
+//     stat_name: "Area 2 - Occupancy",
+//     icon: "null.png",
+//     value: " ",
+//     selected: "1"
+// },
+    {
     _id: "SS0003",
     role_action_id: "RA0001",
     stat_id: "ST0003",
     area_id: "[AR0001,AR0002]",
-    stat_name: "Power Consumption",
+    stat_name: "Area 2 - Power Consumption",
     icon: "flash.png",
     value: "Area 2 - 140",
     selected: "0"
@@ -469,7 +471,7 @@ var modifiedSummaryStatsArea2 = [{
     role_action_id: "RA0001",
     stat_id: "ST0004",
     area_id: "[AR0001,AR0002]",
-    stat_name: "What ever",
+    stat_name: "Area 2 - What ever-1",
     icon: "alarm.png",
     value: "Area 2 - 13",
     selected: "1"
@@ -478,7 +480,7 @@ var modifiedSummaryStatsArea2 = [{
     role_action_id: "RA0001",
     stat_id: "ST0004",
     area_id: "[AR0001,AR0002]",
-    stat_name: "What ever",
+    stat_name: "Area 2 - What ever-2",
     icon: "idea.png",
     value: "Area 2 - 22",
     selected: "1"
@@ -487,7 +489,7 @@ var modifiedSummaryStatsArea2 = [{
     role_action_id: "RA0001",
     stat_id: "ST0004",
     area_id: "[AR0001,AR0002]",
-    stat_name: "What ever",
+    stat_name: "Area 2 - What ever-3",
     icon: "settings.png",
     value: "Area 2 - 33",
     selected: "0"
@@ -751,7 +753,7 @@ var modesForUser = [{
     _id: "M0001",
     mode_name: "Love Mode",
     icon: "love.png",
-    mode_staus: "1",
+    mode_status: "1",
     role_action_id: "RA0001",
     area_id: "AR0001",
     favorite: "1",
@@ -772,10 +774,10 @@ var modesForUser = [{
         ]
     }]
 }, {
-    _id: "M0001",
+    _id: "M0002",
     mode_name: "Party Mode",
     icon: "party.png",
-    mode_staus: "1",
+    mode_status: "0",
     role_action_id: "RA0001",
     area_id: "AR0001",
     favorite: "0",
@@ -799,10 +801,10 @@ var modesForUser = [{
     _id: "M0003",
     mode_name: "Sad Mode",
     icon: "sad.png",
-    mode_staus: "1",
+    mode_status: "0",
     role_action_id: "RA0001",
     area_id: "AR0001",
-    favorite: "1",
+    favorite: "0",
     operation: ["Add",
         "Update",
         "Delete",
@@ -823,7 +825,7 @@ var modesForUser = [{
     _id: "M0004",
     mode_name: "Hungry Mode",
     icon: "hungry.png",
-    mode_staus: "1",
+    mode_status: "0",
     role_action_id: "RA0004",
     area_id: "AR0004",
     favorite: "1",
@@ -868,7 +870,7 @@ var presetsForUsers = [{
     _id: "P0002",
     icon: "sunday.png",
     preset_name: "Sunday",
-    preset_status: "1",
+    preset_status: "0",
     role_action_id: "RA0001",
     favorite: "0",
     operation: ["Add",
@@ -894,9 +896,9 @@ var presetsForUsers = [{
     _id: "P0004",
     icon: "poya.png",
     preset_name: "Poya Day",
-    preset_status: "1",
+    preset_status: "0",
     role_action_id: "RA0001",
-    favorite: "1",
+    favorite: "0",
     operation: ["Add",
         "Update",
         "Delete",
@@ -962,7 +964,7 @@ var notificationForUserAndAllAreas = [{
     _id: "SS0001",
     Type_id: "NT0001",
     type: "notification",
-    message: "Notification Notification Notification Notification ",
+    message: "This is a dummy Notification",
     area_id: "[AR0001,AR0002]",
     user_id: "U0001",
     state: "1"
@@ -970,7 +972,7 @@ var notificationForUserAndAllAreas = [{
     _id: "SS0002",
     Type_id: "NT0002",
     type: "warning",
-    message: "Warning Warning Warning Warning ",
+    message: "This is a dummy Warning",
     area_id: "[AR0001,AR0002]",
     user_id: "U0001",
     state: "1"
@@ -978,7 +980,7 @@ var notificationForUserAndAllAreas = [{
     _id: "SS0003",
     Type_id: "NT0003",
     type: "information",
-    message: "Information Information Information Information ",
+    message: "This is a dummy Information",
     area_id: "[AR0001,AR0002]",
     user_id: "U0001",
     state: "1"
@@ -1178,7 +1180,7 @@ app.get('/test', function (req, res) {
 });
 app.post('/test', function (req, res) {
     console.log("POST To SERVER");
-    res.send(test, {body: req.body});
+    res.send(test, {body: "testing"} );
 });
 
 app.listen(6060);
