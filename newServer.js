@@ -83,45 +83,47 @@ var allAreasForUser = [
                 area_img: "Room01-03.jpeg"
             }
         ]
-    }, {
-        _id: "AR0002",
-        area_name: "Room 02",
-        area_type: "Room",
-        orientation: "Left",
-        sequence: "02",
-        selected_area_img_id: "AR0001-AI0001",
-        floor: [{
-            floor_id: "FL0001",
-            floor_name: "1st floor",
-            floor_no: "01"
-        }],
-        user_area: [
-            {
-                user_id: "U0001",
-                personal_room: 1,
-                personal_name: "My Room"
-            },
-            {
-                user_id: "U0002",
-                personal_room: 0,
-                personal_name: "Brothers's Room"
-            }
-        ],
-        img: [
-            {
-                area_img_id: "AR0001-AI0001",
-                area_img: "dummy-room-3.jpg"
-            },
-            {
-                area_img_id: "AR0001-AI0002",
-                area_img: "Room01-02.jpeg"
-            },
-            {
-                area_img_id: "AR0001-AI0003",
-                area_img: "Room01-03.jpeg"
-            }
-        ]
-    }];
+    }
+    // , {
+    //     _id: "AR0002",
+    //     area_name: "Room 02",
+    //     area_type: "Room",
+    //     orientation: "Left",
+    //     sequence: "02",
+    //     selected_area_img_id: "AR0001-AI0001",
+    //     floor: [{
+    //         floor_id: "FL0001",
+    //         floor_name: "1st floor",
+    //         floor_no: "01"
+    //     }],
+    //     user_area: [
+    //         {
+    //             user_id: "U0001",
+    //             personal_room: 1,
+    //             personal_name: "My Room"
+    //         },
+    //         {
+    //             user_id: "U0002",
+    //             personal_room: 0,
+    //             personal_name: "Brothers's Room"
+    //         }
+    //     ],
+    //     img: [
+    //         {
+    //             area_img_id: "AR0001-AI0001",
+    //             area_img: "dummy-room-3.jpg"
+    //         },
+    //         {
+    //             area_img_id: "AR0001-AI0002",
+    //             area_img: "Room01-02.jpeg"
+    //         },
+    //         {
+    //             area_img_id: "AR0001-AI0003",
+    //             area_img: "Room01-03.jpeg"
+    //         }
+    //     ]
+    // }
+    ];
 
 app.get('/users/U0001/areas', function (req, res) {
     console.log("GET From SERVER");
@@ -402,7 +404,7 @@ var modifiedSummaryStatsArea1 = [{
     stat_name: "Power Consumption",
     icon: "flash.png",
     value: "Area 1 - 270",
-    selected: "0"
+    selected: "1"
 }, {
     _id: "SS0004",
     role_action_id: "RA0001",
@@ -411,7 +413,7 @@ var modifiedSummaryStatsArea1 = [{
     stat_name: "What ever-1",
     icon: "alarm.png",
     value: "Area 1 - 123",
-    selected: "1"
+    selected: "0"
 }, {
     _id: "SS0004",
     role_action_id: "RA0001",
@@ -420,7 +422,7 @@ var modifiedSummaryStatsArea1 = [{
     stat_name: "What ever-2",
     icon: "idea.png",
     value: "Area 1 - 12211",
-    selected: "1"
+    selected: "0"
 }, {
     _id: "SS0004",
     role_action_id: "RA0001",
@@ -465,7 +467,7 @@ var modifiedSummaryStatsArea2 = [
     stat_name: "Area 2 - Power Consumption",
     icon: "flash.png",
     value: "Area 2 - 140",
-    selected: "0"
+    selected: "1"
 }, {
     _id: "SS0004",
     role_action_id: "RA0001",
@@ -777,7 +779,7 @@ var modesForUser = [{
     _id: "M0002",
     mode_name: "Party Mode",
     icon: "party.png",
-    mode_status: "0",
+    mode_status: "1",
     role_action_id: "RA0001",
     area_id: "AR0001",
     favorite: "0",
@@ -801,7 +803,7 @@ var modesForUser = [{
     _id: "M0003",
     mode_name: "Sad Mode",
     icon: "sad.png",
-    mode_status: "0",
+    mode_status: "1",
     role_action_id: "RA0001",
     area_id: "AR0001",
     favorite: "0",
