@@ -123,7 +123,7 @@ var allAreasForUser = [
     //         }
     //     ]
     // }
-    ];
+];
 
 app.get('/users/U0001/areas', function (req, res) {
     console.log("GET From SERVER");
@@ -460,42 +460,42 @@ var modifiedSummaryStatsArea2 = [
 //     selected: "1"
 // },
     {
-    _id: "SS0003",
-    role_action_id: "RA0001",
-    stat_id: "ST0003",
-    area_id: "[AR0001,AR0002]",
-    stat_name: "Area 2 - Power Consumption",
-    icon: "flash.png",
-    value: "Area 2 - 140",
-    selected: "1"
-}, {
-    _id: "SS0004",
-    role_action_id: "RA0001",
-    stat_id: "ST0004",
-    area_id: "[AR0001,AR0002]",
-    stat_name: "Area 2 - What ever-1",
-    icon: "alarm.png",
-    value: "Area 2 - 13",
-    selected: "1"
-}, {
-    _id: "SS0004",
-    role_action_id: "RA0001",
-    stat_id: "ST0004",
-    area_id: "[AR0001,AR0002]",
-    stat_name: "Area 2 - What ever-2",
-    icon: "idea.png",
-    value: "Area 2 - 22",
-    selected: "1"
-}, {
-    _id: "SS0004",
-    role_action_id: "RA0001",
-    stat_id: "ST0004",
-    area_id: "[AR0001,AR0002]",
-    stat_name: "Area 2 - What ever-3",
-    icon: "settings.png",
-    value: "Area 2 - 33",
-    selected: "0"
-}];
+        _id: "SS0003",
+        role_action_id: "RA0001",
+        stat_id: "ST0003",
+        area_id: "[AR0001,AR0002]",
+        stat_name: "Area 2 - Power Consumption",
+        icon: "flash.png",
+        value: "Area 2 - 140",
+        selected: "1"
+    }, {
+        _id: "SS0004",
+        role_action_id: "RA0001",
+        stat_id: "ST0004",
+        area_id: "[AR0001,AR0002]",
+        stat_name: "Area 2 - What ever-1",
+        icon: "alarm.png",
+        value: "Area 2 - 13",
+        selected: "1"
+    }, {
+        _id: "SS0004",
+        role_action_id: "RA0001",
+        stat_id: "ST0004",
+        area_id: "[AR0001,AR0002]",
+        stat_name: "Area 2 - What ever-2",
+        icon: "idea.png",
+        value: "Area 2 - 22",
+        selected: "1"
+    }, {
+        _id: "SS0004",
+        role_action_id: "RA0001",
+        stat_id: "ST0004",
+        area_id: "[AR0001,AR0002]",
+        stat_name: "Area 2 - What ever-3",
+        icon: "settings.png",
+        value: "Area 2 - 33",
+        selected: "0"
+    }];
 
 app.get('/users/U0001/areas/AR0002/summarystats/data', function (req, res) {
     console.log("GET From SERVER");
@@ -1173,6 +1173,33 @@ app.get('/users/U0001/summarystats/overview', function (req, res) {
     res.send(summaryStatsSidepanelAll);
 });
 
+var createAreaMeta = [{
+        area_name: "ARNEWAREA",
+        area_type: [{
+            _id: "AT0001",
+            area_type: "Bed Room"
+        }, {
+            _id: "AT0002",
+            area_type: "Kitchen"
+        }],
+        floor_list: [{
+            _id: "FL0001",
+            floor_name: "1st floor",
+            floor_no: 1.0
+        }, {
+            _id: "FL0002",
+            floor_name: "2nd floor",
+            floor_no: 2.0
+        }]
+    }]
+    ;
+
+app.get('/users/U0001/areas/metainfo', function (req, res) {
+    console.log("GET From SERVER");
+    res.send(createAreaMeta);
+});
+
+
 //POST Testing
 var test = [{name: "Dee"}, {age: "23"}];
 
@@ -1182,7 +1209,7 @@ app.get('/test', function (req, res) {
 });
 app.post('/test', function (req, res) {
     console.log("POST To SERVER");
-    res.send(test, {body: "testing"} );
+    res.send(test, {body: "testing"});
 });
 
 app.listen(6060);
