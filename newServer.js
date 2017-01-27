@@ -1199,6 +1199,83 @@ app.get('/users/U0001/areas/metainfo', function (req, res) {
     res.send(createAreaMeta);
 });
 
+var areaMetaServer = {
+    "data": [{
+        "area_name": "Area 3",
+        "area_type": [{"_id": "AT0001", "area_type": "Bed Room"}, {
+            "_id": "AT0002",
+            "area_type": "Kitchen"
+        }, {"_id": "AT0003", "area_type": "Dining Room"}, {"_id": "AT0004", "area_type": "Living Room"}],
+        "floor_list": [{"_id": "FL0001", "floor_name": "Amy Room", "floor_no": 1}, {
+            "_id": "FL0002",
+            "floor_name": "Peter Room",
+            "floor_no": 2
+        }, {"_id": "FL0003", "floor_name": "Anna Room", "floor_no": 3}, {
+            "_id": "FL0004",
+            "floor_name": "Sandra Room",
+            "floor_no": 4
+        }, {"_id": "FL0005", "floor_name": "Ben Room", "floor_no": 5}, {
+            "_id": "FL0006",
+            "floor_name": "Harvey Room",
+            "floor_no": 6
+        }, {"_id": "FL0007", "floor_name": "Michelle Room", "floor_no": 7}, {
+            "_id": "FL0008",
+            "floor_name": "Karen Room",
+            "floor_no": 8
+        }, {"_id": "FL0009", "floor_name": "Cathy Room", "floor_no": 9}, {
+            "_id": "FL00010",
+            "floor_name": "Natalie Room",
+            "floor_no": 10
+        }, {"_id": "FL00011", "floor_name": "Sidney Room", "floor_no": 11}, {
+            "_id": "FL00012",
+            "floor_name": "Nicole Room",
+            "floor_no": 12
+        }, {"_id": "FL00013", "floor_name": "Ben Room", "floor_no": 13}, {
+            "_id": "FL00014",
+            "floor_name": "Melinda Room",
+            "floor_no": 14
+        }, {"_id": "FL00015", "floor_name": "Curtis Room", "floor_no": 15}, {
+            "_id": "FL00016",
+            "floor_name": "Luis Room",
+            "floor_no": 16
+        }, {"_id": "FL00017", "floor_name": "Susan Room", "floor_no": 17}, {
+            "_id": "FL00018",
+            "floor_name": "Clara Room",
+            "floor_no": 18
+        }, {"_id": "FL00019", "floor_name": "Ben Room", "floor_no": 19}, {
+            "_id": "FL00020",
+            "floor_name": "Justin Room",
+            "floor_no": 20
+        }, {"_id": "FL00021", "floor_name": "Jacob Room", "floor_no": 21}, {
+            "_id": "FL00022",
+            "floor_name": "Nicholas Room",
+            "floor_no": 22
+        }, {"_id": "FL00023", "floor_name": "Tamara Room", "floor_no": 23}, {
+            "_id": "FL00024",
+            "floor_name": "Dorothy Room",
+            "floor_no": 24
+        }, {"_id": "FL00025", "floor_name": "Helen Room", "floor_no": 25}, {
+            "_id": "FL00026",
+            "floor_name": "Ethel Room",
+            "floor_no": 26
+        }, {"_id": "FL00027", "floor_name": "Crystal Room", "floor_no": 27}, {
+            "_id": "FL00028",
+            "floor_name": "Tommy Room",
+            "floor_no": 28
+        }, {"_id": "FL00029", "floor_name": "Alexander Room", "floor_no": 29}, {
+            "_id": "FL00030",
+            "floor_name": "Vincent Room",
+            "floor_no": 30
+        }]
+    }]
+};
+
+
+app.get('/metainfo/areas', function (req, res) {
+    console.log("GET From SERVER");
+    res.send(areaMetaServer);
+});
+
 
 //POST Testing
 var test = [{name: "Dee"}, {age: "23"}];
