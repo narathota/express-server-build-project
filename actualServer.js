@@ -1216,9 +1216,39 @@ app.get('/users/notification', function (req, res) {
 
 // Summarystats Overviewdata
 
-var summaryStatsOverview = {};
+var summaryStatsOverview = {
+    "data": [{
+        "_id": "SS0001",
+        "role_action_id": "RA0001",
+        "stat_id": "ST0001",
+        "area_id": ["AR0001", "AR0002"],
+        "selected": 1,
+        "stat": [{"_id": "ST0001", "stat_name": "Temprature", "icon": "Temprature.png"}]
+    }, {
+        "_id": "SS0002",
+        "role_action_id": "RA0001",
+        "stat_id": "ST0002",
+        "area_id": ["AR0001", "AR0002"],
+        "selected": 1,
+        "stat": [{"_id": "ST0002", "stat_name": "Lights", "icon": "Lights.png"}]
+    }, {
+        "_id": "SS0003",
+        "role_action_id": "RA0001",
+        "stat_id": "ST0003",
+        "area_id": ["AR0001", "AR0002"],
+        "selected": 1,
+        "stat": [{"_id": "ST0003", "stat_name": "Fan", "icon": "Fan.png"}]
+    }, {
+        "_id": "SS0004",
+        "role_action_id": "RA0001",
+        "stat_id": "ST0004",
+        "area_id": ["AR0001"],
+        "selected": 1,
+        "stat": [{"_id": "ST0004", "stat_name": "Occupancy", "icon": "Occupancy.png"}]
+    }]
+};
 
-app.get('/users/U0001/summarystats/overviewdata', function (req, res) {
+app.get('/users/U0001/summarystats', function (req, res) {
     console.log("GET From SERVER");
     res.send(summaryStatsOverview);
 });

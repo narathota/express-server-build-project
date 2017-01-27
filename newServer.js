@@ -909,7 +909,7 @@ var presetsForUsers = [{
     mode_id: ["M0001"]
 }];
 
-app.get('/users/U0001/preset', function (req, res) {
+app.get('/users/U0001/presets', function (req, res) {
     console.log("GET From SERVER");
     res.send(presetsForUsers);
 });
