@@ -16,6 +16,39 @@ app.all('/*', function (req, res, next) {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
+//headerData
+var userData = [{
+    userId: "10",
+    firstName: "Jon",
+    lastName: "Snow",
+    userName: "Jon Snow",
+    age: "30",
+    imagePath: "jon_snow.png",
+    userInfo: {
+        signedIn: true,
+        permissionLevel: "user",
+        token: "as9sad92dhk7k0vu7dgre68d8",
+        features: [
+            "dashboard",
+            "dasboard_edit",
+            "room_edit"
+        ]
+    }
+}];
+
+app.get('/userData', function (req, res) {
+    console.log("GET From SERVER");
+    res.send(userData);
+});
+
+var headerData = [{text: "LOGOUT"}];
+
+app.get('/headerData', function (req, res) {
+    console.log("GET From SERVER");
+    res.send(headerData);
+});
+
+
 // Areas
 var allAreasForUsers = {
     "data": [{
@@ -382,225 +415,200 @@ app.get('/summarystats', function (req, res) {
     res.send(allSummaryStats);
 });
 
-var summaryStatsByAreaUser = {
+var summaryStatsByAreaUserArea1 = {
     "data": [{
         "_id": "AR0001",
         "area_name": "Area 1",
-        "area_type_id": "AT0001",
-        "grid_size": "3x3",
-        "img": [{
-            "_id": "587debb9c5116107e0afe163",
-            "area_img_id": "AR0001-AI0001",
-            "area_img": "32a2a398-dc9d-11e6-bf26-cec0c932ce01.png",
-            "x_coordinate": "0",
-            "y_coordinate": "0",
-            "md5_sum": "be78fc7a2c433db40e9abc164d7ef8f7158d7b9c4c2c986d272dc0b1d24e417e"
-        }, {
-            "_id": "587debb9c5116107e0afe164",
-            "area_img_id": "AR0001-AI0002",
-            "area_img": "32a2a62c-dc9d-11e6-bf26-cec0c932ce01.png",
-            "x_coordinate": "1",
-            "y_coordinate": "0",
-            "md5_sum": "be78fc7a2c4dfdfdsf9abc164d7ef8f7158d7b9c4c2c986d272dc0b1d24e417e"
-        }, {
-            "_id": "587debb9c5116107e0afe167",
-            "area_img_id": "AR0001-AI0003",
-            "area_img": "32a2a74e-dc9d-11e6-bf26-cec0c932ce01.png",
-            "x_coordinate": "2",
-            "y_coordinate": "0",
-            "md5_sum": "be78fc7a2c433db40e9abc164d7edsfdsfdsfb9c4c2c986d272dc0b1d24e417e"
-        }],
-        "user_area": [{
-            "_id": "587debb9zxzc5116107e0afe163",
-            "user_id": "U0001",
-            "personal_room": 1,
-            "personal_name": "My Room"
-        }, {
-            "_id": "587debb9czzx5116107e0afe163",
-            "user_id": "U0002",
-            "personal_room": 0,
-            "personal_name": "Brothers's Room"
-        }],
-        "selected_area_img_id": "AR0001-AI0001",
-        "floor_id": "FL0001",
-        "summarystat": [{
+        "summarystats": [{
             "_id": "SS0001",
             "role_action_id": "RA0001",
-            "stat_id": "ST0001",
-            "area_id": ["AR0001", "AR0002"],
             "selected": 1,
-            "stat_name": "Temprature",
-            "icon": "Temprature.png"
+            "stat_name": "Temperature",
+            "icon": "temperature.png",
+            "value": "61"
         }, {
             "_id": "SS0002",
             "role_action_id": "RA0001",
-            "stat_id": "ST0002",
-            "area_id": ["AR0001", "AR0002"],
             "selected": 1,
-            "stat_name": "Lights",
-            "icon": "Lights.png"
+            "stat_name": "Occupancy",
+            "icon": "occupancy.png",
+            "value": "89"
         }, {
             "_id": "SS0003",
             "role_action_id": "RA0001",
-            "stat_id": "ST0003",
-            "area_id": ["AR0001", "AR0002"],
             "selected": 1,
-            "stat_name": "Fan",
-            "icon": "Fan.png"
+            "stat_name": "Active Device Count",
+            "icon": "active_device_count.png",
+            "value": "96"
         }, {
             "_id": "SS0004",
             "role_action_id": "RA0001",
-            "stat_id": "ST0004",
-            "area_id": ["AR0001"],
+            "selected": 0,
+            "stat_name": "Power Usage",
+            "icon": "power_usage.png",
+            "value": "37"
+        }, {
+            "_id": "SS0005",
+            "role_action_id": "RA0001",
             "selected": 1,
-            "stat_name": "Occupancy",
-            "icon": "Occupancy.png"
+            "stat_name": "System Controlled Devices",
+            "icon": "system_controlled_devices.png",
+            "value": "63"
         }],
-        "floor": [{"_id": "FL0001", "floor_name": "Amy Room", "floor_no": 1}]
+        "area_img_id": "AR0001-AI0001",
+        "area_img": "32a2a398-dc9d-11e6-bf26-cec0c932ce01.png",
+        "md5_sum": "be78fc7a2c433db40e9abc164d7ef8f7158d7b9c4c2c986d272dc0b1d24e417e",
+        "personal_room": 1,
+        "personal_name": "My Room",
+        "floor_id": "FL0001",
+        "floor_name": "Amy Room",
+        "floor_no": 1
     }]
 };
 
 app.get('/users/U0001/areas/AR0001/summarystats/data', function (req, res) {
     console.log("GET From SERVER");
-    res.send(summaryStatsByAreaUser);
+    res.send(summaryStatsByAreaUserArea1);
+});
+
+
+var summaryStatsByAreaUserArea2 = {
+    "data": [{
+        "_id": "AR0002",
+        "area_name": "Area 2",
+        "summarystats": [{
+            "_id": "SS0001",
+            "role_action_id": "RA0001",
+            "selected": 1,
+            "stat_name": "Temperature",
+            "icon": "temperature.png",
+            "value": "16"
+        }, {
+            "_id": "SS0002",
+            "role_action_id": "RA0001",
+            "selected": 0,
+            "stat_name": "Occupancy",
+            "icon": "occupancy.png",
+            "value": "23"
+        }, {
+            "_id": "SS0003",
+            "role_action_id": "RA0001",
+            "selected": 0,
+            "stat_name": "Active Device Count",
+            "icon": "active_device_count.png",
+            "value": "44"
+        }, {
+            "_id": "SS0005",
+            "role_action_id": "RA0001",
+            "selected": 1,
+            "stat_name": "System Controlled Devices",
+            "icon": "system_controlled_devices.png",
+            "value": "47"
+        }],
+        "area_img_id": "AR0002-AI0001",
+        "area_img": "32a2a82a-dc9d-11e6-bf26-cec0c932ce01.png",
+        "md5_sum": "be78fc7a2c433db40e9abc164d7ef8f7158d7b9c4c2c986d272dc0b1d24e417e",
+        "personal_room": 0,
+        "personal_name": "Big Brother's Room",
+        "floor_id": "FL0001",
+        "floor_name": "Amy Room",
+        "floor_no": 1
+    }]
+};
+
+app.get('/users/U0001/areas/AR0002/summarystats/data', function (req, res) {
+    console.log("GET From SERVER");
+    res.send(summaryStatsByAreaUserArea2);
 });
 
 var summaryStatsbyUID = {
     "data": [{
         "_id": "AR0001",
         "area_name": "Area 1",
-        "area_type_id": "AT0001",
-        "grid_size": "3x3",
-        "img": [{
-            "_id": "587debb9c5116107e0afe163",
-            "area_img_id": "AR0001-AI0001",
-            "area_img": "32a2a398-dc9d-11e6-bf26-cec0c932ce01.png",
-            "x_coordinate": "0",
-            "y_coordinate": "0",
-            "md5_sum": "be78fc7a2c433db40e9abc164d7ef8f7158d7b9c4c2c986d272dc0b1d24e417e"
-        }, {
-            "_id": "587debb9c5116107e0afe164",
-            "area_img_id": "AR0001-AI0002",
-            "area_img": "32a2a62c-dc9d-11e6-bf26-cec0c932ce01.png",
-            "x_coordinate": "1",
-            "y_coordinate": "0",
-            "md5_sum": "be78fc7a2c4dfdfdsf9abc164d7ef8f7158d7b9c4c2c986d272dc0b1d24e417e"
-        }, {
-            "_id": "587debb9c5116107e0afe167",
-            "area_img_id": "AR0001-AI0003",
-            "area_img": "32a2a74e-dc9d-11e6-bf26-cec0c932ce01.png",
-            "x_coordinate": "2",
-            "y_coordinate": "0",
-            "md5_sum": "be78fc7a2c433db40e9abc164d7edsfdsfdsfb9c4c2c986d272dc0b1d24e417e"
-        }],
-        "user_area": [{
-            "_id": "587debb9zxzc5116107e0afe163",
-            "user_id": "U0001",
-            "personal_room": 1,
-            "personal_name": "My Room"
-        }, {
-            "_id": "587debb9czzx5116107e0afe163",
-            "user_id": "U0002",
-            "personal_room": 0,
-            "personal_name": "Brothers's Room"
-        }],
-        "selected_area_img_id": "AR0001-AI0001",
-        "floor_id": "FL0001",
-        "summarystat": [{
+        "summarystats": [{
             "_id": "SS0001",
             "role_action_id": "RA0001",
-            "stat_id": "ST0001",
-            "area_id": ["AR0001", "AR0002"],
             "selected": 1,
-            "stat_name": "Temprature",
-            "icon": "Temprature.png"
-        }, {
-            "_id": "SS0003",
-            "role_action_id": "RA0001",
-            "stat_id": "ST0003",
-            "area_id": ["AR0001", "AR0002"],
-            "selected": 1,
-            "stat_name": "Fan",
-            "icon": "Fafsfsfsdn.png"
-        }, {
-            "_id": "SS0004",
-            "role_action_id": "RA0001",
-            "stat_id": "ST0004",
-            "area_id": ["AR0001"],
-            "selected": 1,
-            "stat_name": "Occupancy",
-            "icon": "Occupancy.png"
-        }],
-        "floor": [{"_id": "FL0001", "floor_name": "Amy Room", "floor_no": 1}]
-    }, {
-        "_id": "AR0002",
-        "area_name": "Area 2",
-        "area_type_id": "AT0001",
-        "grid_size": "3x3",
-        "img": [{
-            "_id": "587debb9c5116107e0afe169",
-            "area_img_id": "AR0002-AI0001",
-            "area_img": "32a2a82a-dc9d-11e6-bf26-cec0c932ce01.png",
-            "x_coordinate": "0",
-            "y_coordinate": "0",
-            "md5_sum": "be78fc7a2c433db40e9abc164d7ef8f7158d7b9c4c2c986d272dc0b1d24e417e"
-        }, {
-            "_id": "587debb9c5116107e0afe165",
-            "area_img_id": "AR0002-AI0002",
-            "area_img": "32a2a8fc-dc9d-11e6-bf26-cec0c932ce01.png",
-            "x_coordinate": "1",
-            "y_coordinate": "0",
-            "md5_sum": "be78fc7a2c433db40e9abc164d7ef8f7158d7b9c4c2cxcvcxv2dc0b1d24e417e"
-        }, {
-            "_id": "587debb9c5116107e0afe170",
-            "area_img_id": "AR0002-AI0003",
-            "area_img": "32a2ad16-dc9d-11e6-bf26-cec0c932ce01.png",
-            "x_coordinate": "2",
-            "y_coordinate": "0",
-            "md5_sum": "be78fc7a2c433db40e9abc164d7ef8f715xzcxzcxz2c986d272dc0b1d24e417e"
-        }, {"y_coordinate": 0, "x_coordinate": "1", "area_img": "rrrrr.png", "area_img_id": "AR0002-AI0004"}],
-        "user_area": [{
-            "_id": "587debbzx5116107e0afe163",
-            "user_id": "U0001",
-            "personal_room": 0,
-            "personal_name": "Big Brother's Room"
-        }, {"_id": "587debb9czx16107e0afe163", "user_id": "U0002", "personal_room": 1, "personal_name": "My Room"}],
-        "selected_area_img_id": "AR0001-AI0001",
-        "floor_id": "FL0001",
-        "summarystat": [{
-            "_id": "SS0001",
-            "role_action_id": "RA0001",
-            "stat_id": "ST0001",
-            "area_id": ["AR0001", "AR0002"],
-            "selected": 1,
-            "stat_name": "Temprature",
-            "icon": "Temprature.png"
+            "stat_name": "Temperature",
+            "icon": "temperature.png",
+            "value": "92"
         }, {
             "_id": "SS0002",
             "role_action_id": "RA0001",
-            "stat_id": "ST0002",
-            "area_id": ["AR0001", "AR0002"],
             "selected": 1,
-            "stat_name": "Lights",
-            "icon": "Lights.png"
+            "stat_name": "Occupancy",
+            "icon": "occupancy.png",
+            "value": "91"
         }, {
             "_id": "SS0003",
             "role_action_id": "RA0001",
-            "stat_id": "ST0003",
-            "area_id": ["AR0001", "AR0002"],
             "selected": 1,
-            "stat_name": "Fan",
-            "icon": "Fan.png"
+            "stat_name": "Active Device Count",
+            "icon": "active_device_count.png",
+            "value": "39"
+        }, {
+            "_id": "SS0004",
+            "role_action_id": "RA0001",
+            "selected": 1,
+            "stat_name": "Power Usage",
+            "icon": "power_usage.png",
+            "value": "96"
         }, {
             "_id": "SS0005",
-            "role_action_id": "RA0002",
-            "stat_id": "ST0005",
-            "area_id": ["AR0002"],
+            "role_action_id": "RA0001",
             "selected": 0,
-            "stat_name": "Power",
-            "icon": "Power.png"
+            "stat_name": "System Controlled Devices",
+            "icon": "system_controlled_devices.png",
+            "value": "30"
         }],
-        "floor": [{"_id": "FL0001", "floor_name": "Amy Room", "floor_no": 1}]
+        "area_img_id": "AR0001-AI0001",
+        "area_img": "32a2a398-dc9d-11e6-bf26-cec0c932ce01.png",
+        "md5_sum": "be78fc7a2c433db40e9abc164d7ef8f7158d7b9c4c2c986d272dc0b1d24e417e",
+        "personal_room": 1,
+        "personal_name": "My Room",
+        "floor_id": "FL0001",
+        "floor_name": "Amy Room",
+        "floor_no": 1
+    }, {
+        "_id": "AR0002",
+        "area_name": "Area 2",
+        "summarystats": [{
+            "_id": "SS0001",
+            "role_action_id": "RA0001",
+            "selected": 1,
+            "stat_name": "Temperature",
+            "icon": "temperature.png",
+            "value": "15"
+        }, {
+            "_id": "SS0002",
+            "role_action_id": "RA0001",
+            "selected": 1,
+            "stat_name": "Occupancy",
+            "icon": "occupancy.png",
+            "value": "85"
+        }, {
+            "_id": "SS0003",
+            "role_action_id": "RA0001",
+            "selected": 1,
+            "stat_name": "Active Device Count",
+            "icon": "active_device_count.png",
+            "value": "86"
+        }, {
+            "_id": "SS0005",
+            "role_action_id": "RA0001",
+            "selected": 1,
+            "stat_name": "System Controlled Devices",
+            "icon": "system_controlled_devices.png",
+            "value": "56"
+        }],
+        "area_img_id": "AR0002-AI0001",
+        "area_img": "32a2a82a-dc9d-11e6-bf26-cec0c932ce01.png",
+        "md5_sum": "be78fc7a2c433db40e9abc164d7ef8f7158d7b9c4c2c986d272dc0b1d24e417e",
+        "personal_room": 0,
+        "personal_name": "Big Brother's Room",
+        "floor_id": "FL0001",
+        "floor_name": "Amy Room",
+        "floor_no": 1
     }]
 };
 
@@ -614,7 +622,7 @@ var modesbyUserIDandArea = {
     "data": [{
         "_id": "M0001",
         "mode_name": "Happy Mode",
-        "icon": "Happy.png",
+        "icon": "happy.png",
         "mode_status": 1,
         "role_action_id": "RA0001",
         "area_id": "AR0001",
@@ -649,7 +657,7 @@ var allModes = {
     "data": [{
         "_id": "M0001",
         "mode_name": "Happy Mode",
-        "icon": "Happy.png",
+        "icon": "happy.png",
         "mode_status": 1,
         "role_action_id": "RA0001",
         "area_id": "AR0001",
@@ -684,7 +692,7 @@ var modesByID = {
     "data": [{
         "_id": "M0001",
         "mode_name": "Happy Mode",
-        "icon": "Happy.png",
+        "icon": "happy.png",
         "mode_status": 1,
         "role_action_id": "RA0001",
         "area_id": "AR0001",
@@ -706,7 +714,7 @@ var modesByAreaID = {
     "data": [{
         "_id": "M0001",
         "mode_name": "Happy Mode",
-        "icon": "Happy.png",
+        "icon": "happy.png",
         "mode_status": 1,
         "role_action_id": "RA0001",
         "area_id": "AR0001",
@@ -741,8 +749,8 @@ var modesByUserID = {
     "data": [{
         "_id": "M0001",
         "mode_name": "Happy Mode",
-        "icon": "Happy.png",
-        "mode_status": 1,
+        "icon": "happy.png",
+        "mode_status": 0,
         "role_action_id": "RA0001",
         "area_id": "AR0001",
         "favorite": 1,
@@ -777,7 +785,7 @@ var presetsByUserID = {
     "data": [{
         "_id": "PR0001",
         "preset_name": "Happy Preset",
-        "icon": "Happy.png",
+        "icon": "happy.png",
         "preset_status": 1,
         "role_action_id": "RA0001",
         "favorite": 1,
@@ -797,7 +805,7 @@ var presetsByUserID = {
     }, {
         "_id": "PR0001",
         "preset_name": "Happy Preset",
-        "icon": "Happy.png",
+        "icon": "happy.png",
         "preset_status": 0,
         "role_action_id": "RA0001",
         "favorite": 1,
@@ -826,7 +834,7 @@ var allPresets = {
     "data": [{
         "_id": "PR0001",
         "preset_name": "Happy Preset",
-        "icon": "Happy.png",
+        "icon": "happy.png",
         "preset_status": 1,
         "role_action_id": "RA0001",
         "favorite": 1,
@@ -855,7 +863,7 @@ var presetsByID = {
     "data": [{
         "_id": "PR0001",
         "preset_name": "Happy Preset",
-        "icon": "Happy.png",
+        "icon": "happy.png",
         "preset_status": 1,
         "role_action_id": "RA0001",
         "favorite": 1,
@@ -1143,12 +1151,11 @@ app.get('/notification/N0001', function (req, res) {
 var notificationsForUsers = {
     "data": [{
         "_id": "N0001",
-        "notification_template_id": "NT0001",
         "area_id": ["AR0001"],
         "user_id": "U0001",
-        "reply": "Turn off",
-        "status": 4,
-        "resolve_timestamp": "2014-09-17T25:25:56.314Z",
+        "reply": "Good morning",
+        "status": 3,
+        "resolve_timestamp": "2017-02-13T25:25:56.314Z",
         "created_timestamp": "2014-09-17T23:25:56.314Z",
         "notification_template": [{
             "_id": "NT0001",
@@ -1156,6 +1163,34 @@ var notificationsForUsers = {
             "type": "notification",
             "status": 1,
             "reply": ["Good morning", "Very good morning", "Morning"],
+            "role_action_id": ["RA0001", "RA0002", "RA0003"]
+        }]
+    }, {
+        "_id": "N0004",
+        "area_id": ["AR0001"],
+        "user_id": "U0001",
+        "status": 0,
+        "created_timestamp": "2017-02-13T23:25:56.314Z",
+        "notification_template": [{
+            "_id": "NT0002",
+            "message": "Lights are working",
+            "type": "warning",
+            "status": 1,
+            "reply": ["Turn off", "Ignore"],
+            "role_action_id": ["RA0001", "RA0002", "RA0003"]
+        }]
+    }, {
+        "_id": "N0006",
+        "area_id": ["AR0001"],
+        "user_id": "U0001",
+        "status": 0,
+        "created_timestamp": "2017-02-13T23:25:56.314Z",
+        "notification_template": [{
+            "_id": "NT0003",
+            "message": "Kettle is boiling",
+            "type": "alert",
+            "status": 1,
+            "reply": ["Turn off"],
             "role_action_id": ["RA0001", "RA0002", "RA0003"]
         }]
     }]
@@ -1233,34 +1268,30 @@ var summaryStatsOverview = {
         "_id": "SS0001",
         "role_action_id": "RA0001",
         "stat_id": "ST0001",
-        "area_id": ["AR0001", "AR0002"],
-        "selected": 1,
-        "stat": [{"_id": "ST0001", "stat_name": "Temprature", "icon": "Temprature.png"}],
-        "value": "30"
+        "stat_name": "Temperature",
+        "icon": "temperature.png",
+        "value": "19"
     }, {
         "_id": "SS0002",
         "role_action_id": "RA0001",
         "stat_id": "ST0002",
-        "area_id": ["AR0001", "AR0002"],
-        "selected": 1,
-        "stat": [{"_id": "ST0002", "stat_name": "Lights", "icon": "Lights.png"}],
-        "value": "30"
+        "stat_name": "Occupancy",
+        "icon": "occupancy.png",
+        "value": "22"
     }, {
         "_id": "SS0003",
         "role_action_id": "RA0001",
         "stat_id": "ST0003",
-        "area_id": ["AR0001", "AR0002"],
-        "selected": 1,
-        "stat": [{"_id": "ST0003", "stat_name": "Fan", "icon": "Fan.png"}],
-        "value": "30"
+        "stat_name": "Active Device Count",
+        "icon": "active_device_count.png",
+        "value": "58"
     }, {
         "_id": "SS0004",
         "role_action_id": "RA0001",
         "stat_id": "ST0004",
-        "area_id": ["AR0001"],
-        "selected": 1,
-        "stat": [{"_id": "ST0004", "stat_name": "Occupancy", "icon": "Occupancy.png"}],
-        "value": "30"
+        "stat_name": "Power Usage",
+        "icon": "power_usage.png",
+        "value": "27"
     }]
 };
 
