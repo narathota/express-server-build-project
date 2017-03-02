@@ -188,7 +188,6 @@ app.get('/areas/AR0001', function (req, res) {
     console.log("GET From SERVER");
     res.send(areaInfoForAreaID);
 });
-
 var areaMetaServer = {
     "data": [{
         "area_name": "Area 3",
